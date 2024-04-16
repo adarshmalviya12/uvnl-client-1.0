@@ -35,6 +35,24 @@ const OpportunityTable = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const fetchOpportunities = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/admin/opportunities`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setOpportunities(response.data.data.opportunities);
+    } catch (error) {
+      console.error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchOpportunities();
+  }, []);
+
   return (
     <>
       <div className="flex justify-between items-center text-title-lg mb-3">

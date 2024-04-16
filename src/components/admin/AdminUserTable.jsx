@@ -87,7 +87,10 @@ const AdminUserTable = () => {
                 <tbody>
                   {users.length !== 0 ? (
                     users?.map((user) => (
-                      <tr className="dark:bg-graydark text-center">
+                      <tr
+                        className="dark:bg-graydark text-center"
+                        key={user?._id}
+                      >
                         <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
                           {user?.firstName} {user?.lastName}
                         </td>

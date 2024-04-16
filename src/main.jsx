@@ -89,6 +89,7 @@ import { KycProvider } from "./context/KycContext.jsx";
 import KycView from "./components/user/KycView.jsx";
 import AdminViewKyc from "./components/admin/kyc/AdminViewKyc.jsx";
 import { ProductProvider } from "./context/ProductContext.jsx";
+import AdminMembers from "./components/admin/AdminMembers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -185,6 +186,10 @@ const router = createBrowserRouter([
       {
         path: "opportunity",
         element: <ViewOpportunites />,
+      },
+      {
+        path: "member",
+        element: <AdminMembers />,
       },
     ],
   },

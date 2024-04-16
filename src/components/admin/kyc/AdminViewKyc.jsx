@@ -40,7 +40,7 @@ const AdminViewKyc = () => {
 
   return (
     <>
-      <h1 className="text-title-lg mb-4">User Details</h1>
+      <h1 className="text-title-lg mb-4">User kyc Details</h1>
       {kyc ? (
         <div className="border-b border-stroke font-normal text-sm md:text-base px-3 md:px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
           <div>
@@ -50,7 +50,7 @@ const AdminViewKyc = () => {
             </p>
             <p className="text-gray-600 mb-2 flex items-center gap-2">
               <MdMail />
-              <span className="font-bold">Kyc Status:</span> {kyc.kycStatus}
+              <span className="font-bold">Kyc Status:</span> {kyc?.kycStatus}
             </p>
             <p className="text-gray-600 mb-2 flex items-center gap-2">
               <MdMail />
@@ -65,12 +65,12 @@ const AdminViewKyc = () => {
             {/* Here's the modification for the PAN card image as an example */}
             <p className="text-gray-600 mb-2 md:flex  gap-2  ">
               <ViewImage imageLink={kyc.signatureUrl} imageName="signature" />
-              <ViewImage imageLink={kyc.adharCardUrl} imageName="signature" />
+              <ViewImage imageLink={kyc.adharCardUrl} imageName="Adhar Card" />
               <ViewImage
                 imageLink={kyc.passportImageUrl}
-                imageName="signature"
+                imageName="Passport Image"
               />
-              <ViewImage imageLink={kyc.panCardUrl} imageName="signature" />
+              <ViewImage imageLink={kyc.panCardUrl} imageName="Pancard" />
             </p>
           </div>
         </div>

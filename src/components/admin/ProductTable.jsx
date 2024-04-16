@@ -7,9 +7,10 @@ import DeleteButton from "./DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useProducts } from "../../context/ProductContext";
+import { useEffect } from "react";
 
 const ProductTable = () => {
-  const { loading, error } = useAuth();
+  const { loading, error, setError, setLoading } = useAuth();
   const { products, setProducts } = useProducts();
 
   const token = localStorage.getItem("token");
@@ -28,7 +29,25 @@ const ProductTable = () => {
       console.error("error", error?.response.data.message);
     }
   };
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/admin/products`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
+      setProducts(response.data.data.products);
+      setLoading(false);
+    } catch (error) {
+      setError(error.response.data.message);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <>
       {loading ? (
