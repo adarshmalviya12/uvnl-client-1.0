@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import BASE_URL from "../../constant";
 import axios from "axios";
@@ -6,30 +5,15 @@ import CreateProduct from "./CreateProduct";
 import { FaEdit, FaEye } from "react-icons/fa";
 import DeleteButton from "./DeleteButton";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useProducts } from "../../context/ProductContext";
 
 const ProductTable = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { loading, error } = useAuth();
+  const { products, setProducts } = useProducts();
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/admin/products`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setProducts(response.data.data.products);
-      setLoading(false);
-    } catch (error) {
-      setError(error.response.data.message);
-      setLoading(false);
-    }
-  };
 
   const handleDelete = async (id) => {
     try {
@@ -44,10 +28,6 @@ const ProductTable = () => {
       console.error("error", error?.response.data.message);
     }
   };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   return (
     <>

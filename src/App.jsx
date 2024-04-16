@@ -25,11 +25,6 @@ function App() {
                 alt="Logo"
               />
 
-              {/* <p className="2xl:px-20">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                suspendisse.
-              </p> */}
-
               <span className="mt-15 inline-block">
                 <img src={"/src/logo/UVNLBranding.png"} alt="uvnl branding" />
               </span>

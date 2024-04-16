@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../constant";
+import { useProducts } from "../../context/ProductContext";
 
 const CategoryEdit = () => {
   const { categoryId } = useParams();
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useProducts;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({

@@ -13,20 +13,6 @@ const OpportunityTable = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const fetchOpportunities = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/admin/opportunities`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setOpportunities(response.data.data.opportunities);
-    } catch (error) {
-      console.error(error.response.data.message);
-    }
-  };
-
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/admin/opportunity/${id}`, {
@@ -48,10 +34,6 @@ const OpportunityTable = () => {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  useEffect(() => {
-    fetchOpportunities();
-  }, []);
 
   return (
     <>

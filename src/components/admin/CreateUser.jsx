@@ -104,12 +104,12 @@ const CreateUser = () => {
                         />
                       </div>
 
-                      <div className="w-full xl:w-1/2">
+                      <div className="w-full xl:w-1/3">
                         <label className="mb-2.5 block text-black dark:text-white">
                           Middlename <span className="text-meta-1">*</span>
                         </label>
                         <input
-                          type="middlename"
+                          type="text"
                           name="middlename"
                           placeholder="middlename"
                           onChange={(e) => setMiddleName(e.target.value)}
@@ -154,7 +154,7 @@ const CreateUser = () => {
                           name="phone no"
                           placeholder="phone no"
                           onChange={(e) => setNumber(e.target.value)}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">

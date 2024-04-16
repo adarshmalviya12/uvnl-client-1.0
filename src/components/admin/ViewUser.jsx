@@ -10,14 +10,7 @@ const ViewUser = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [edit, setEdit] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-    number: "",
-    dob: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const date = user && user.dob ? new Date(user.dob).toDateString() : "N/A";
   useEffect(() => {
@@ -128,11 +121,11 @@ const ViewUser = () => {
             ) : (
               <>
                 <div>
-                  <form className="space-y-4" onSubmit={handleSubmit}>
+                  <form className=" space-y-4  " onSubmit={handleSubmit}>
                     {/* Username */}
-                    <div className="mb-4.5 flex flex-col gap-6 md:flex-row">
+                    <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                        <label className="mb-1.5 block text-black dark:text-white">
                           First Name <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -141,12 +134,12 @@ const ViewUser = () => {
                           placeholder="First Name"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
-                          Middle Name
+                        <label className="mb-2.5 block text-black dark:text-white">
+                          Middle Name <span className="text-meta-1">*</span>
                         </label>
                         <input
                           type="text"
@@ -154,11 +147,11 @@ const ViewUser = () => {
                           placeholder="Middle Name"
                           value={formData.middleName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                        <label className="mb-2.5 block text-black dark:text-white">
                           Last Name <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -167,14 +160,14 @@ const ViewUser = () => {
                           placeholder="Last Name"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                     </div>
                     {/* Email */}
                     <div className="mb-4.5 flex flex-col gap-6 md:flex-row">
-                      <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                      <div className="w-full xl:w-1/2">
+                        <label className="mb-2.5 block text-black dark:text-white">
                           Email <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -183,11 +176,11 @@ const ViewUser = () => {
                           placeholder="Email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
-                      <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                      <div className="w-full xl:w-1/2">
+                        <label className="mb-2.5 block text-black dark:text-white">
                           Phone <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -196,37 +189,30 @@ const ViewUser = () => {
                           placeholder="number"
                           value={formData.number}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
-                          Date of Birth <span className="text-meta-1">*</span>
+                        <label className="mb-2.5 block text-black dark:text-white">
+                          Data of Birth <span className="text-meta-1">*</span>
                         </label>
                         <input
                           type="date"
                           name="dob"
                           value={formData.dob.split("T")[0]} // Assuming the dob is in ISO format
+                          placeholder="Date of birth"
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                     </div>
-                    <div className="mt-3 flex justify-end">
-                      <button
-                        className="bg-primary text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="submit"
-                      >
-                        Save
-                      </button>
-                      <button
-                        className="bg-danger text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={() => setEdit(false)}
-                      >
-                        Cancel
-                      </button>
-                    </div>
+
+                    <button
+                      type="submit"
+                      className=" bg-primary  text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    >
+                      Submit
+                    </button>
                   </form>
                 </div>
               </>

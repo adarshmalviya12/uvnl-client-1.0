@@ -6,6 +6,7 @@ import BASE_URL from "../../constant";
 const EditUserDetails = () => {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({});
 
@@ -18,12 +19,16 @@ const EditUserDetails = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-
+        const formattedDOB = response.data.data.user.dob
+          ? new Date(response.data.data.user.dob).toISOString().split("T")[0]
+          : "";
         setFormData({
           firstName: response.data.data.user.firstName || "",
+          middleName: response.data.data.user.middleName || "",
           lastName: response.data.data.user.lastName || "",
           email: response.data.data.user.email || "",
           number: response.data.data.user.number || "",
+          dob: formattedDOB || "",
         });
         setLoading(false);
       } catch (error) {
@@ -44,12 +49,19 @@ const EditUserDetails = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.patch(`${BASE_URL}/admin/user/${userId}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.patch(
+        `${BASE_URL}/admin/user/${userId}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUser(response.data.data);
       alert("User updated successfully!");
+      setEdit(false);
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -64,9 +76,9 @@ const EditUserDetails = () => {
       ) : (
         <form className=" space-y-4  " onSubmit={handleSubmit}>
           {/* Username */}
-          <div className="mb-2.5 flex flex-col text-base   gap-3 md:flex-row">
-            <div className="w-full xl:w-1/2">
-              <label className="mb-2.5 block text-black dark:text-white">
+          <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
+            <div className="w-full xl:w-1/3">
+              <label className="mb-1.5 block text-black dark:text-white">
                 First Name <span className="text-meta-1">*</span>
               </label>
               <input
@@ -78,8 +90,20 @@ const EditUserDetails = () => {
                 className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               />
             </div>
-            {/* Add similar inputs with corresponding name and value attributes */}
-            <div className="w-full xl:w-1/2">
+            <div className="w-full xl:w-1/3">
+              <label className="mb-2.5 block text-black dark:text-white">
+                Middle Name <span className="text-meta-1">*</span>
+              </label>
+              <input
+                type="text"
+                name="middleName"
+                placeholder="Middle Name"
+                value={formData.middleName}
+                onChange={handleInputChange}
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              />
+            </div>
+            <div className="w-full xl:w-1/3">
               <label className="mb-2.5 block text-black dark:text-white">
                 Last Name <span className="text-meta-1">*</span>
               </label>
@@ -94,8 +118,8 @@ const EditUserDetails = () => {
             </div>
           </div>
           {/* Email */}
-          <div className="mb-2.5 flex flex-col gap-3 md:flex-row">
-            <div className="w-full xl:w-1/2">
+          <div className="mb-4.5 flex flex-col gap-6 md:flex-row">
+            <div className="w-full xl:w-1/3">
               <label className="mb-2.5 block text-black dark:text-white">
                 Email <span className="text-meta-1">*</span>
               </label>
@@ -108,7 +132,7 @@ const EditUserDetails = () => {
                 className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               />
             </div>
-            <div className="w-full xl:w-1/2">
+            <div className="w-full xl:w-1/3">
               <label className="mb-2.5 block text-black dark:text-white">
                 Phone <span className="text-meta-1">*</span>
               </label>
@@ -117,6 +141,19 @@ const EditUserDetails = () => {
                 name="number"
                 placeholder="number"
                 value={formData.number}
+                onChange={handleInputChange}
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+            </div>
+            <div className="w-full xl:w-1/3">
+              <label className="mb-2.5 block text-black dark:text-white">
+                Data of Birth <span className="text-meta-1">*</span>
+              </label>
+              <input
+                type="date"
+                name="dob"
+                value={formData.dob.split("T")[0]} // Assuming the dob is in ISO format
+                placeholder="Date of birth"
                 onChange={handleInputChange}
                 className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               />

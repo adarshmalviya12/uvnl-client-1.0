@@ -3,6 +3,7 @@ import axios from "axios";
 import { MdMail, MdPerson } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ViewImage from "../../ViewImage";
 
 const AdminViewKyc = () => {
   const { kycId } = useParams();
@@ -51,59 +52,25 @@ const AdminViewKyc = () => {
               <MdMail />
               <span className="font-bold">Kyc Status:</span> {kyc.kycStatus}
             </p>
+            <p className="text-gray-600 mb-2 flex items-center gap-2">
+              <MdMail />
+              <span className="font-bold">adharCardNumber:</span>{" "}
+              {kyc.adharCardNumber}
+            </p>
+            <p className="text-gray-600 mb-2 flex items-center gap-2">
+              <MdMail />
+              <span className="font-bold">panCardNumber:</span>{" "}
+              {kyc.panCardNumber}
+            </p>
             {/* Here's the modification for the PAN card image as an example */}
-            <p className="text-gray-600 mb-2 flex items-center gap-2">
-              <a
-                href={kyc.panCardUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={kyc.panCardUrl}
-                  alt="PAN card"
-                  style={{ maxWidth: "300px", maxHeight: "300px" }}
-                />
-              </a>
-            </p>
-            {/* Repeat the pattern for other documents */}
-            <p className="text-gray-600 mb-2 flex items-center gap-2">
-              <a
-                href={kyc.adharCardUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={kyc.adharCardUrl}
-                  alt="Aadhar card"
-                  style={{ maxWidth: "300px", maxHeight: "300px" }}
-                />
-              </a>
-            </p>
-            <p className="text-gray-600 mb-2 flex items-center gap-2">
-              <a
-                href={kyc.signatureUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={kyc.signatureUrl}
-                  alt="Signature"
-                  style={{ maxWidth: "300px", maxHeight: "300px" }}
-                />
-              </a>
-            </p>
-            <p className="text-gray-600 mb-2 flex items-center gap-2">
-              <a
-                href={kyc.passportImageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={kyc.passportImageUrl}
-                  alt="Passport"
-                  style={{ maxWidth: "300px", maxHeight: "300px" }}
-                />
-              </a>
+            <p className="text-gray-600 mb-2 md:flex  gap-2  ">
+              <ViewImage imageLink={kyc.signatureUrl} imageName="signature" />
+              <ViewImage imageLink={kyc.adharCardUrl} imageName="signature" />
+              <ViewImage
+                imageLink={kyc.passportImageUrl}
+                imageName="signature"
+              />
+              <ViewImage imageLink={kyc.panCardUrl} imageName="signature" />
             </p>
           </div>
         </div>
