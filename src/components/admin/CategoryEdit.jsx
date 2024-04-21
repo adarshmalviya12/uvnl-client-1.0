@@ -25,7 +25,7 @@ const CategoryEdit = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         const categoryData = response.data.data.category;
         setCategory(categoryData);
@@ -58,7 +58,7 @@ const CategoryEdit = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       alert("Category updated successfully!");
     } catch (error) {
@@ -77,27 +77,27 @@ const CategoryEdit = () => {
 
   return (
     <>
-      <h1 className="text-title-lg mb-4">Category Details</h1>
-      <div className="p-6 bg-white dark:bg-black shadow-md rounded-md dark:bg-gray-800">
+      <h1 className="mb-4 text-title-lg">Category Details</h1>
+      <div className="dark:bg-gray-800 rounded-md bg-white p-6 shadow-md dark:bg-black">
         <p className="text-gray-600 mb-2 flex items-center gap-2">
           <span className="font-bold">Name :</span>
           {category.name}
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-2.5 flex flex-col gap-6 md:flex-row">
-            <label className="mb-2.5 block text-black dark:text-white font-bold">
+            <label className="mb-2.5 block font-bold text-black dark:text-white">
               Details:
               <input
                 type="text"
                 name="details"
                 value={formData.details}
                 onChange={handleInputChange}
-                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-1 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               />
             </label>
           </div>
           <div className="mb-2.5">
-            <label className="mb-2.5 block text-black dark:text-white font-bold">
+            <label className="mb-2.5 block font-bold text-black dark:text-white">
               Description:
               <textarea
                 type="text"
@@ -105,13 +105,13 @@ const CategoryEdit = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 rows="3"
-                className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-1 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               ></textarea>
             </label>
           </div>
           <button
             type="submit"
-            className="bg-primary text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="mb-1 mr-1 bg-primary px-3 py-1 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
           >
             Submit
           </button>

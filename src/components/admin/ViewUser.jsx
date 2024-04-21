@@ -65,7 +65,7 @@ const ViewUser = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       setUser(response.data.data);
@@ -84,8 +84,8 @@ const ViewUser = () => {
         <p>Error: {error}</p>
       ) : (
         <>
-          <h1 className="text-title-lg mb-4">User Details</h1>
-          <div className="border-b border-stroke font-normal text-sm md:text-base px-3 md:px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+          <h1 className="mb-4 text-title-lg">User Details</h1>
+          <div className="border-b border-stroke bg-white px-3 py-2 text-sm font-normal dark:border-strokedark dark:bg-black md:px-5 md:text-base">
             {!edit ? (
               <>
                 <div>
@@ -110,7 +110,7 @@ const ViewUser = () => {
                 </div>
                 <div className="mt-3 flex justify-end">
                   <button
-                    className="bg-primary text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="mb-1 mr-1 bg-primary px-3 py-1 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
                     type="button"
                     onClick={() => setEdit(true)}
                   >
@@ -124,7 +124,7 @@ const ViewUser = () => {
                   <form className=" space-y-4  " onSubmit={handleSubmit}>
                     {/* Username */}
                     <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
-                      <div className="w-full xl:w-1/3">
+                      <div className="w-full xl:w-1/2">
                         <label className="mb-1.5 block text-black dark:text-white">
                           First Name <span className="text-meta-1">*</span>
                         </label>
@@ -134,11 +134,11 @@ const ViewUser = () => {
                           placeholder="First Name"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
-                      <div className="w-full xl:w-1/3">
-                        <label className="mb-2.5 block text-black dark:text-white">
+                      <div className="w-full xl:w-1/2">
+                        <label className="mb-1.5 block text-black dark:text-white">
                           Middle Name <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -147,11 +147,11 @@ const ViewUser = () => {
                           placeholder="Middle Name"
                           value={formData.middleName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
-                      <div className="w-full xl:w-1/3">
-                        <label className="mb-2.5 block text-black dark:text-white">
+                      <div className="w-full xl:w-1/2">
+                        <label className="mb-1.5 block text-black dark:text-white">
                           Last Name <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -160,7 +160,7 @@ const ViewUser = () => {
                           placeholder="Last Name"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                     </div>
@@ -176,7 +176,7 @@ const ViewUser = () => {
                           placeholder="Email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                       <div className="w-full xl:w-1/2">
@@ -189,10 +189,10 @@ const ViewUser = () => {
                           placeholder="number"
                           value={formData.number}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition [appearance:textfield] focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                         />
                       </div>
-                      <div className="w-full xl:w-1/3">
+                      <div className="w-full xl:w-1/2">
                         <label className="mb-2.5 block text-black dark:text-white">
                           Data of Birth <span className="text-meta-1">*</span>
                         </label>
@@ -202,14 +202,14 @@ const ViewUser = () => {
                           value={formData.dob.split("T")[0]} // Assuming the dob is in ISO format
                           placeholder="Date of birth"
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                     </div>
 
                     <button
                       type="submit"
-                      className=" bg-primary  text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className=" active:bg-pink-600  mb-1 mr-1 rounded bg-primary px-3 py-1.5 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
                     >
                       Submit
                     </button>

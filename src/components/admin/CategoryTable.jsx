@@ -58,7 +58,7 @@ const CategoryTable = () => {
         <p>Error: {error}</p>
       ) : (
         <>
-          <div className="flex justify-between items-center text-title-sm md:text-title-md mb-3   ">
+          <div className="mb-3 flex items-center justify-between text-title-sm md:text-title-md   ">
             <h1 className="text-black dark:text-white">Category</h1>
             <div className="max-h-132.5">
               <CreateCategory setCategories={setCategories} />
@@ -66,19 +66,19 @@ const CategoryTable = () => {
           </div>
           <div>
             <div className="max-w-full overflow-x-auto">
-              <table className=" bg-white text-sm md:text-base w-full table-auto">
+              <table className=" w-full table-auto bg-white text-sm md:text-base">
                 <thead>
                   <tr className="bg-bodydark text-center dark:bg-black">
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Name
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Details
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Description
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Actions
                     </th>
                   </tr>
@@ -87,20 +87,20 @@ const CategoryTable = () => {
                   {categories.length !== 0 ? (
                     categories.map((category) => (
                       <tr
-                        className="dark:bg-graydark text-center"
+                        className="text-center dark:bg-graydark"
                         key={category._id}
                       >
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {category.name}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {category.details}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {category.description}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                          <div className="flex gap-2 justify-center">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                          <div className="flex justify-center gap-2">
                             <button
                               onClick={() =>
                                 navigate(`/admin/category/${category._id}`)
@@ -125,7 +125,7 @@ const CategoryTable = () => {
                   ) : (
                     <tr className="dark:bg-meta-4">
                       <td
-                        className="border-b border-[#eee] py-3 px-2 pl-9 dark:border-strokedark xl:pl-11"
+                        className="border-b border-[#eee] px-2 py-3 pl-9 dark:border-strokedark xl:pl-11"
                         colSpan="4"
                       >
                         Empty

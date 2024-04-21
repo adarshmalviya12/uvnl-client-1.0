@@ -62,26 +62,26 @@ const CreateProduct = ({ setProducts }) => {
   return (
     <>
       <button
-        className="bg-primary text-white active:bg-pink-600 font-bold uppercase text-sm px-3 py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="active:bg-pink-600 mb-1 mr-1 rounded bg-primary px-3 py-1.5 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
         type="button"
         onClick={() => setShowModal(true)}
       >
         Create Product
       </button>
       {showModal && (
-        <div className="justify-center z-9999 items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none">
-          <div className="relative w-auto my-6 mx-auto max-w-3xl">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
+          <div className="relative mx-auto my-6 w-auto max-w-3xl">
             {/*content*/}
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-black outline-none focus:outline-none">
+            <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none dark:bg-black">
               {/*header*/}
               <div className="border-b border-stroke px-5 py-2 dark:border-strokedark">
-                <h3 className="font-medium text-title-sm text-black dark:text-white">
+                <h3 className="text-title-sm font-medium text-black dark:text-white">
                   Create Product
                 </h3>
               </div>
               {/*body*/}
-              <div className="relative p-6 flex-auto overflow-y-auto max-h-80 md:max-h-90 lg:max-h-115">
-                <form action="" className="font-thin text-sm">
+              <div className="relative max-h-80 flex-auto overflow-y-auto p-6 md:max-h-90 lg:max-h-115">
+                <form action="" className="text-sm font-thin">
                   {/* name  */}
                   {errorMessage && (
                     <p className="text-danger">{errorMessage}</p>
@@ -97,7 +97,7 @@ const CreateProduct = ({ setProducts }) => {
                         placeholder="Enter Product Name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
                     </div>
                     <div className="w-full xl:w-1/3">
@@ -110,7 +110,7 @@ const CreateProduct = ({ setProducts }) => {
                         placeholder="details"
                         value={formData.details}
                         onChange={handleInputChange}
-                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
                     </div>
                     <div className="w-full xl:w-1/3">
@@ -123,7 +123,7 @@ const CreateProduct = ({ setProducts }) => {
                         placeholder="enter decription"
                         value={formData.description}
                         onChange={handleInputChange}
-                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
                     </div>
                   </div>
@@ -136,7 +136,7 @@ const CreateProduct = ({ setProducts }) => {
                         name="categoryId"
                         value={formData.categoryId}
                         onChange={handleInputChange}
-                        className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-1.5 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       >
                         <option value="" disabled>
                           select
@@ -155,7 +155,7 @@ const CreateProduct = ({ setProducts }) => {
                 </form>
               </div>
               {/*footer*/}
-              <div className="flex items-center text-title-sm justify-end gap-2 p-4 border-t border-solid border-blueGray-200 rounded-b">
+              <div className="border-blueGray-200 flex items-center justify-end gap-2 rounded-b border-t border-solid p-4 text-title-sm">
                 <button
                   className="inline-flex items-center justify-center bg-danger px-1 py-1 text-center font-normal text-white hover:bg-opacity-90 md:px-2 xl:px-4"
                   type="button"
@@ -164,7 +164,7 @@ const CreateProduct = ({ setProducts }) => {
                   Close
                 </button>
                 <button
-                  className="inline-flex items-center justify-center bg-primary py-1 px-2 text-center font-normal text-white hover:bg-opacity-90 md:px-2 xl:px-4"
+                  className="inline-flex items-center justify-center bg-primary px-2 py-1 text-center font-normal text-white hover:bg-opacity-90 md:px-2 xl:px-4"
                   type="button"
                   onClick={handleFormSubmit}
                 >

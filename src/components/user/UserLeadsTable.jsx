@@ -36,26 +36,26 @@ const UserLeadsTable = ({ leads, setLeads }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center text-title-sm md:text-title-md mb-3   ">
+      <div className="mb-3 flex items-center justify-between text-title-sm md:text-title-md   ">
         <h1 className="text-black dark:text-white">Leads</h1>
         <CreateLeadModel />
       </div>
       <div className="">
         <div className="max-w-full overflow-x-auto">
-          <table className=" bg-white text-xs md:text-base w-full table-auto">
+          <table className=" w-full table-auto bg-white text-xs md:text-base">
             <thead>
               <tr className="bg-bodydark text-center dark:bg-black">
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Name
                 </th>
 
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Mobile Number
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Email
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Actions
                 </th>
               </tr>
@@ -63,18 +63,18 @@ const UserLeadsTable = ({ leads, setLeads }) => {
             <tbody>
               {currentLeads.length !== 0 ? (
                 currentLeads?.map((lead) => (
-                  <tr className="dark:bg-graydark text-center" key={lead?._id}>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                  <tr className="text-center dark:bg-graydark" key={lead?._id}>
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {lead?.firstName} {lead?.lastName}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {lead?.number}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {lead?.email}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                      <div className="flex gap-2 justify-center">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                      <div className="flex justify-center gap-2">
                         <button
                           onClick={() => navigate(`/user/lead/${lead?._id}`)}
                         >
@@ -95,9 +95,9 @@ const UserLeadsTable = ({ leads, setLeads }) => {
                   </tr>
                 ))
               ) : (
-                <tr className="dark:bg-graydark text-center ">
+                <tr className="text-center dark:bg-graydark ">
                   <td
-                    className="border-b border-[#eee] py-2 px-2  dark:border-strokedark  xl:pl-4"
+                    className=" xl:pl-4 border-b border-[#eee] px-2  py-2 dark:border-strokedark"
                     colSpan="5"
                   >
                     no lead to display
@@ -107,14 +107,14 @@ const UserLeadsTable = ({ leads, setLeads }) => {
             </tbody>
           </table>
         </div>
-        <ul className="flex justify-center mt-4">
+        <ul className="mt-4 flex justify-center">
           {Array.from(
             { length: Math.ceil(leads.length / leadsPerPage) },
             (_, i) => (
               <li key={i} className="mx-1">
                 <button
                   onClick={() => paginate(i + 1)}
-                  className="bg-bodydark hover:bg-bodydark text-white font-bold py-2 px-4 rounded"
+                  className="rounded bg-bodydark px-4 py-2 font-bold text-white hover:bg-bodydark"
                   style={{
                     backgroundColor:
                       currentPage === i + 1 ? "#4f46e5" : "#6b63ff",
@@ -124,7 +124,7 @@ const UserLeadsTable = ({ leads, setLeads }) => {
                   {i + 1}
                 </button>
               </li>
-            )
+            ),
           )}
         </ul>
       </div>

@@ -8,7 +8,7 @@ function App() {
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
-            <div className="py-17.5 px-26 text-center">
+            <div className="px-26 py-17.5 text-center">
               <Link className="mb-5.5 inline-block" to="/">
                 {/* <img className="hidden dark:block"  src={"/src/logo/logohalfcolor.png"} alt="Logo" />
                 <img className="dark:hidden" src={"/src/logo/logohalfwhite.png"} alt="Logo" /> */}
@@ -35,12 +35,12 @@ function App() {
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <Link className="mb-5.5  flex justify-center " to="/">
                 <img
-                  className="hidden dark:block w-14 "
+                  className="hidden w-14 dark:block "
                   src={"/src/logo/logohalfwhite.png"}
                   alt="Logo"
                 />
                 <img
-                  className="dark:hidden lg:hidden  block  w-14 "
+                  className="block w-14  dark:hidden  lg:hidden "
                   src={"/src/logo/logohalfcolor.png"}
                   alt="Logo"
                 />

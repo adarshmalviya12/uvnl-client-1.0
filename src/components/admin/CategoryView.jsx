@@ -30,7 +30,7 @@ const CategoryView = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setCategory(response.data.data.category);
         setFormData({
@@ -66,7 +66,7 @@ const CategoryView = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       setCategory(response.data.data);
@@ -85,8 +85,8 @@ const CategoryView = () => {
         <p>Error: {error}</p>
       ) : (
         <>
-          <h1 className="text-title-lg mb-4">Category Details</h1>
-          <div className="border-b border-stroke font-normal text-sm md:text-base px-3 md:px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+          <h1 className="mb-4 text-title-lg">Category Details</h1>
+          <div className="border-b border-stroke bg-white px-3 py-2 text-sm font-normal dark:border-strokedark dark:bg-black md:px-5 md:text-base">
             {!edit ? (
               <>
                 <div>
@@ -108,7 +108,7 @@ const CategoryView = () => {
                 </div>
                 <div className="mt-3 flex justify-end">
                   <button
-                    className="bg-primary text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="mb-1 mr-1 bg-primary px-3 py-1 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
                     type="button"
                     onClick={() => setEdit(true)}
                   >
@@ -123,7 +123,7 @@ const CategoryView = () => {
                     {/* Category Name */}
                     <div className="mb-4.5 flex flex-col gap-6 md:flex-row">
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                        <label className="block text-black dark:text-white md:mb-2.5">
                           Name <span className="text-meta-1">*</span>
                         </label>
                         <input
@@ -132,11 +132,11 @@ const CategoryView = () => {
                           placeholder="Name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-1 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                        <label className="block text-black dark:text-white md:mb-2.5">
                           Details
                         </label>
                         <input
@@ -145,11 +145,11 @@ const CategoryView = () => {
                           placeholder="Details"
                           value={formData.details}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-1 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                       <div className="w-full xl:w-1/3">
-                        <label className="md:mb-2.5 block text-black dark:text-white">
+                        <label className="block text-black dark:text-white md:mb-2.5">
                           Description
                         </label>
                         <input
@@ -158,19 +158,19 @@ const CategoryView = () => {
                           placeholder="Description"
                           value={formData.description}
                           onChange={handleInputChange}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-1 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         />
                       </div>
                     </div>
                     <div className="mt-3 flex justify-end">
                       <button
-                        className="bg-primary text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="mb-1 mr-1 bg-primary px-3 py-1 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
                         type="submit"
                       >
                         Save
                       </button>
                       <button
-                        className="bg-danger text-white font-bold uppercase text-sm px-3 py-1 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="mb-1 mr-1 bg-danger px-3 py-1 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none"
                         type="button"
                         onClick={() => setEdit(false)}
                       >

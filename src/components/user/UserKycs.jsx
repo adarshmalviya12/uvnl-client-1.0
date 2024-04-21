@@ -19,7 +19,7 @@ const UserKycs = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setKycData(response.data.data);
       }

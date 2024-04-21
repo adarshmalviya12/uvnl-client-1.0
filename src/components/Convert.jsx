@@ -30,7 +30,7 @@ const Convert = ({ products, leadId }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       // Add success notification or redirect
       alert("Lead converted successfully!");
@@ -44,7 +44,7 @@ const Convert = ({ products, leadId }) => {
   return (
     <>
       <button
-        className=" bg-primary  text-white text-xs active:bg-pink-600 font-bold uppercase px-1 py-0.5 md:px-3 md:py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className=" active:bg-pink-600  mb-1 mr-1 rounded bg-primary px-1 py-0.5 text-xs font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none md:px-3 md:py-1.5"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -52,20 +52,20 @@ const Convert = ({ products, leadId }) => {
       </button>
       {showModal ? (
         <>
-          <div className="justify-center z-9999 items-center flex overflow-x-hidden overflow-y-auto  md:max-h-171.5 fixed inset-0  outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+          <div className="fixed inset-0 z-9999 flex items-center justify-center  overflow-y-auto overflow-x-hidden outline-none  focus:outline-none md:max-h-171.5">
+            <div className="relative mx-auto my-6 w-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-black outline-none focus:outline-none">
+              <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none dark:bg-black">
                 {/*header*/}
                 <div className="border-b border-stroke px-5 py-2 dark:border-strokedark">
-                  <h3 className="font-medium text-xs text-black dark:text-white">
+                  <h3 className="text-xs font-medium text-black dark:text-white">
                     Convert Lead
                   </h3>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto overflow-y-auto max-h-80 md:max-h-90 lg:max-h-115">
+                <div className="relative max-h-80 flex-auto overflow-y-auto p-6 md:max-h-90 lg:max-h-115">
                   <form
-                    className="font-thin text-sm min-w-72.5 "
+                    className="min-w-72.5 text-sm font-thin "
                     onSubmit={handleFormSubmit}
                   >
                     <div className="mb-4.5 flex flex-col gap-6 md:flex-row">
@@ -77,7 +77,7 @@ const Convert = ({ products, leadId }) => {
                           name="productId"
                           value={formData.productId}
                           onChange={handleInputChange}
-                          className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-1.5 px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         >
                           <option value="" disabled>
                             Select
@@ -86,7 +86,7 @@ const Convert = ({ products, leadId }) => {
                             <option
                               key={index}
                               value={product._id}
-                              className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary focus:text-black-2 disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                              className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary focus:text-black-2 active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                             >
                               {product.name}
                             </option>
@@ -97,16 +97,16 @@ const Convert = ({ products, leadId }) => {
                   </form>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center text-title-sm justify-end gap-2 p-4 border-t border-solid border-blueGray-200 rounded-b">
+                <div className="border-blueGray-200 flex items-center justify-end gap-2 rounded-b border-t border-solid p-4 text-title-sm">
                   <button
-                    className="inline-flex items-center justify-center bg-danger py-1 px-2 text-center font-normal text-white hover:bg-opacity-90 md:px-2 xl:px-4"
+                    className="inline-flex items-center justify-center bg-danger px-2 py-1 text-center font-normal text-white hover:bg-opacity-90 md:px-2 xl:px-4"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Close
                   </button>
                   <button
-                    className="inline-flex items-center justify-center bg-primary py-1 px-2 text-center font-normal  text-white hover:bg-opacity-90 md:px-2 xl:px-4"
+                    className="inline-flex items-center justify-center bg-primary px-2 py-1 text-center font-normal  text-white hover:bg-opacity-90 md:px-2 xl:px-4"
                     type="button"
                     onClick={handleFormSubmit}
                   >

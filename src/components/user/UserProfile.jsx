@@ -5,8 +5,8 @@ const UserProfile = () => {
   const { user } = useAuth();
   return (
     <>
-      <h1 className="text-title-lg mb-4">User Details </h1>
-      <div className=" border-b border-stroke font-normal text-sm md:text-base px-3 md:px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+      <h1 className="mb-4 text-title-lg">User Details </h1>
+      <div className=" border-b border-stroke bg-white px-3 py-2 text-sm font-normal dark:border-strokedark dark:bg-black md:px-5 md:text-base">
         <div>
           <p className="text-gray-600 mb-2 flex items-center gap-2">
             <MdPerson /> <span className="font-bold">Name :</span>

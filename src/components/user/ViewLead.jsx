@@ -75,17 +75,17 @@ const ViewLead = () => {
           <div className="">
             <div className="flex justify-between">
               {" "}
-              <h2 className="text-title-sm  md:text-title-lg mb-2">
+              <h2 className="mb-2  text-title-sm md:text-title-lg">
                 Leads Details :
               </h2>
-              <div className=" mb-2 text-xs flex justify-end ">
+              <div className=" mb-2 flex justify-end text-xs ">
                 <Convert products={products} leadId={lead?._id} />
                 <CallModel callonNo={lead.number} />
                 <WhatsappModel whatsappNo={lead.number} />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 text-xs md:text-sm md:grid-cols-2 gap-4 border-b border-stroke px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+            <div className="grid grid-cols-1 gap-4 border-b border-stroke bg-white px-5 py-2 text-xs dark:border-strokedark dark:bg-black md:grid-cols-2 md:text-sm">
               <div className="flex-1">
                 <div className="">
                   {/* Your existing code for the first column */}
@@ -105,7 +105,7 @@ const ViewLead = () => {
                     <MdWork /> Occupation : {lead.occupation}
                   </p>
                 </div>
-                <div className="bg-white dark:bg-black">
+                <div>
                   {lead?.address ? (
                     <p className="text-gray-600 mb-2 flex items-center gap-2">
                       <MdLocationOn /> Address : {lead?.address?.street}{" "}

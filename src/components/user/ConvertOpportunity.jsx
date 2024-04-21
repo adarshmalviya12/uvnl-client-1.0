@@ -3,14 +3,13 @@ import BASE_URL from "../../constant";
 import axios from "axios";
 import Loader from "../Loader";
 
-const ConvertOpportunity = ({ opportunityId, kycId }) => {
+const ConvertOpportunity = ({ opportunityId, setKycDetails }) => {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     adharCardNumber: "",
     panCardNumber: "",
-    kycId: kycId,
   });
   const [fileInputs, setFileInputs] = useState({
     adharCardUrl: null,
@@ -42,7 +41,7 @@ const ConvertOpportunity = ({ opportunityId, kycId }) => {
       formDataWithFiles.append("passportImageUrl", fileInputs.passportImageUrl);
       formDataWithFiles.append("signatureUrl", fileInputs.signatureUrl);
 
-      await axios.post(
+      const response = await axios.post(
         `${BASE_URL}/user/kyc/${opportunityId}`,
         formDataWithFiles,
         {
@@ -50,9 +49,9 @@ const ConvertOpportunity = ({ opportunityId, kycId }) => {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
-
+      setKycDetails(response.data.data.kyc);
       alert("KYC submitted successfully!");
       setShowModal(false);
     } catch (error) {
@@ -65,137 +64,142 @@ const ConvertOpportunity = ({ opportunityId, kycId }) => {
   return (
     <>
       <button
-        className=" bg-primary  text-white text-xs active:bg-pink-600 font-bold uppercase px-1 py-0.5 md:px-3 md:py-1.5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className=" active:bg-pink-600  mb-1 mr-1 rounded bg-primary px-1 py-0.5 text-xs font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none md:px-3 md:py-1.5"
         type="button"
         onClick={() => setShowModal(true)}
       >
         Submit KYC
       </button>
       {showModal && (
-        <div className="justify-center z-9999 items-center flex overflow-x-hidden overflow-y-auto md:max-h-171.5 fixed inset-0 outline-none focus:outline-none">
-          <div className="relative w-auto my-6 mx-auto max-w-3xl form-container">
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none md:max-h-171.5">
+          <div className="form-container relative mx-auto my-6 w-auto max-w-3xl">
+            <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
               <div className="border-b border-stroke px-5 py-2">
                 <h3 className="font-medium text-black">
                   Submit KYC for Opportunity
                 </h3>
               </div>
-              <div className="relative p-6 flex-auto overflow-y-auto max-h-96">
+              <div className="relative max-h-96 flex-auto overflow-y-auto p-6">
                 {loading ? (
                   <Loader /> // Display loader when loading is true
                 ) : (
                   <form
                     onSubmit={handleFormSubmit}
-                    enctype="multipart/form-data"
+                    className="text-sm font-thin "
                   >
-                    <div className="mb-4">
-                      <label
-                        htmlFor="adharCardNumber"
-                        className="block text-black mb-2"
-                      >
-                        Adhar Card Number
-                      </label>
-                      <input
-                        type="text"
-                        name="adharCardNumber"
-                        value={formData.adharCardNumber}
-                        onChange={handleInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
+                    <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="adharCardNumber"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Adhar Card Number
+                        </label>
+                        <input
+                          type="text"
+                          name="adharCardNumber"
+                          value={formData.adharCardNumber}
+                          onChange={handleInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="adharCardUrl"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Upload Adhar Card
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="adharCardUrl"
+                          onChange={handleFileInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
                     </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="panCardNumber"
-                        className="block text-black mb-2"
-                      >
-                        Pan Card Number
-                      </label>
-                      <input
-                        type="text"
-                        name="panCardNumber"
-                        value={formData.panCardNumber}
-                        onChange={handleInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
+                    <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="panCardNumber"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Pan Card Number
+                        </label>
+                        <input
+                          type="text"
+                          name="panCardNumber"
+                          value={formData.panCardNumber}
+                          onChange={handleInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="panCardUrl"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Upload Pan Card
+                        </label>
+                        <input
+                          type="file"
+                          name="panCardUrl"
+                          accept="image/*"
+                          onChange={handleFileInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
                     </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="adharCardUrl"
-                        className="block text-black mb-2"
-                      >
-                        Upload Adhar Card
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        name="adharCardUrl"
-                        onChange={handleFileInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="panCardUrl"
-                        className="block text-black mb-2"
-                      >
-                        Upload Pan Card
-                      </label>
-                      <input
-                        type="file"
-                        name="panCardUrl"
-                        accept="image/*"
-                        onChange={handleFileInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="passportImageUrl"
-                        className="block text-black mb-2"
-                      >
-                        Upload Passport Image
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        name="passportImageUrl"
-                        onChange={handleFileInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        htmlFor="signatureUrl"
-                        className="block text-black mb-2"
-                      >
-                        Upload Signature Image
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        name="signatureUrl"
-                        onChange={handleFileInputChange}
-                        className="w-full border border-stroke rounded py-1.5 px-3 outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="flex justify-end">
-                      <button
-                        className="bg-primary text-white py-2 px-4 rounded hover:bg-opacity-90"
-                        type="submit"
-                      >
-                        Submit
-                      </button>
+                    <div className="mb-4.5 flex flex-col gap-3 md:flex-row">
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="passportImageUrl"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Upload Passport Image
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="passportImageUrl"
+                          onChange={handleFileInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
+                      <div className="w-full xl:w-1/2">
+                        <label
+                          htmlFor="signatureUrl"
+                          className="mb-1.5 block text-black dark:text-white"
+                        >
+                          Upload Signature Image
+                        </label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="signatureUrl"
+                          onChange={handleFileInputChange}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        />
+                      </div>
                     </div>
                   </form>
                 )}
                 {errorMessage && (
-                  <div className="text-red-500">{errorMessage}</div> // Display error message if present
+                  <div className="text-danger">{errorMessage}</div> // Display error message if present
                 )}
               </div>
-              <div className="border-t border-solid border-blueGray-200 rounded-b">
-                <div className="flex items-center justify-end p-4 gap-2">
+              <div className="border-blueGray-200 rounded-b border-t border-solid">
+                <div className="flex items-center justify-end gap-2 p-4">
                   <button
-                    className="bg-danger text-white py-2 px-4 rounded hover:bg-opacity-90"
+                    className="rounded bg-primary px-4 py-2 text-white hover:bg-opacity-90"
+                    type="submit"
+                    onClick={handleFormSubmit}
+                  >
+                    Submit
+                  </button>
+                  <button
+                    className="rounded bg-danger px-4 py-2 text-white hover:bg-opacity-90"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../constant";
-import formatDate from "../../utils/date";
+import { formatDateAndTime } from "../../utils/date";
 import { useAuth } from "../../context/AuthContext";
 
 const OpportunityFollowUpsByUser = () => {
@@ -16,7 +16,7 @@ const OpportunityFollowUpsByUser = () => {
   const indexOfFirstFollowUp = indexOfLastFollowUp - followUpsPerPage;
   const currentFollowUps = followUps?.slice(
     indexOfFirstFollowUp,
-    indexOfLastFollowUp
+    indexOfLastFollowUp,
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -31,7 +31,7 @@ const OpportunityFollowUpsByUser = () => {
             `${BASE_URL}/user//users-opporutunities-followups/${user._id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
           setFollowUps(response.data.data.followUps);
           setLoading(false); // Set loading to false after successfully fetching data
@@ -61,25 +61,25 @@ const OpportunityFollowUpsByUser = () => {
       <h1 className="text-title-md">Opportunity Follow Ups</h1>
       <div className="mt-3">
         <div className="max-w-full overflow-x-auto">
-          <table className=" bg-white text-xs md:text-base w-full table-auto">
+          <table className=" w-full table-auto bg-white text-xs md:text-base">
             <thead>
               <tr className="bg-bodydark text-center dark:bg-black">
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Opportunity Name
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Type
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Follow-up Date
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Next Follow-up Date
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Remarks
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Call Status
                 </th>
               </tr>
@@ -88,26 +88,26 @@ const OpportunityFollowUpsByUser = () => {
               {currentFollowUps?.length !== 0 ? (
                 currentFollowUps?.map((followUp) => (
                   <tr
-                    className=" dark:bg-graydark text-center"
+                    className=" text-center dark:bg-graydark"
                     key={followUp._id}
                   >
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp?.createdBy.firstName}{" "}
                       {followUp?.createdBy.lastName}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp?.type}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                      {formatDate(followUp?.followUpDate)}{" "}
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                      {formatDateAndTime(followUp?.followUpDate)}{" "}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                      {formatDate(followUp?.nextFollowUpDate)}
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                      {formatDateAndTime(followUp?.nextFollowUpDate)}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp.remarks}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp?.callStatus}
                     </td>
                   </tr>
@@ -115,7 +115,7 @@ const OpportunityFollowUpsByUser = () => {
               ) : (
                 <tr className="dark:bg-meta-4">
                   <td
-                    className="border-b border-[#eee] py-3 px-2 pl-9 dark:border-strokedark xl:pl-11"
+                    className="border-b border-[#eee] px-2 py-3 pl-9 dark:border-strokedark xl:pl-11"
                     colSpan="5"
                   >
                     No follow-ups to display
@@ -125,14 +125,14 @@ const OpportunityFollowUpsByUser = () => {
             </tbody>
           </table>
         </div>
-        <ul className="flex justify-center mt-4">
+        <ul className="mt-4 flex justify-center">
           {Array.from(
             { length: Math.ceil(followUps?.length / followUpsPerPage) },
             (_, i) => (
               <li key={i} className="mx-1">
                 <button
                   onClick={() => paginate(i + 1)}
-                  className="bg-primary hover:bg-bodydark text-white font-bold py-1 px-2 rounded"
+                  className="rounded bg-primary px-2 py-1 font-bold text-white hover:bg-bodydark"
                   style={{
                     backgroundColor:
                       currentPage === i + 1 ? "#4f46e5" : "#6b63ff",
@@ -142,7 +142,7 @@ const OpportunityFollowUpsByUser = () => {
                   {i + 1}
                 </button>
               </li>
-            )
+            ),
           )}
         </ul>
       </div>

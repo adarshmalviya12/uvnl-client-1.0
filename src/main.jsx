@@ -3,81 +3,82 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Loader from "./components/Loader.jsx";
+import "react-datepicker/dist/react-datepicker.css";
 
 // Import components using lazy loading
 const App = React.lazy(() => import("./App.jsx"));
 const AdminLogin = React.lazy(() => import("./pages/AdminLogin.jsx"));
 const AdminLayout = React.lazy(() => import("./layout/AdminLayout.jsx"));
-const AdminProfile = React.lazy(() =>
-  import("./components/admin/AdminProfile.jsx")
+const AdminProfile = React.lazy(
+  () => import("./components/admin/AdminProfile.jsx"),
 );
-const AdminSettings = React.lazy(() =>
-  import("./components/admin/AdminSettings.jsx")
+const AdminSettings = React.lazy(
+  () => import("./components/admin/AdminSettings.jsx"),
 );
 const UserLayout = React.lazy(() => import("./layout/UserLayout.jsx"));
-const UserLeadsTable = React.lazy(() =>
-  import("./components/user/UserLeadsTable.jsx")
+const UserLeadsTable = React.lazy(
+  () => import("./components/user/UserLeadsTable.jsx"),
 );
-const AdminUserTable = React.lazy(() =>
-  import("./components/admin/AdminUserTable.jsx")
+const AdminUserTable = React.lazy(
+  () => import("./components/admin/AdminUserTable.jsx"),
 );
 const ViewLead = React.lazy(() => import("./components/user/ViewLead.jsx"));
 const EditLead = React.lazy(() => import("./components/user/EditLead.jsx"));
-const ViewOpportunites = React.lazy(() =>
-  import("./components/user/ViewOpportunites.jsx")
+const ViewOpportunites = React.lazy(
+  () => import("./components/user/ViewOpportunites.jsx"),
 );
-const ViewOpportunity = React.lazy(() =>
-  import("./components/user/ViewOpportunity.jsx")
+const ViewOpportunity = React.lazy(
+  () => import("./components/user/ViewOpportunity.jsx"),
 );
-const EditOpportunity = React.lazy(() =>
-  import("./components/user/EditOpportunity.jsx")
+const EditOpportunity = React.lazy(
+  () => import("./components/user/EditOpportunity.jsx"),
 );
 const ViewUser = React.lazy(() => import("./components/admin/ViewUser.jsx"));
-const EditUserDetails = React.lazy(() =>
-  import("./components/admin/EditUserDetails.jsx")
+const EditUserDetails = React.lazy(
+  () => import("./components/admin/EditUserDetails.jsx"),
 );
 const Category = React.lazy(() => import("./components/admin/Category.jsx"));
 const Products = React.lazy(() => import("./components/admin/Products.jsx"));
-const AdminDashboard = React.lazy(() =>
-  import("./components/admin/AdminDashboard.jsx")
+const AdminDashboard = React.lazy(
+  () => import("./components/admin/AdminDashboard.jsx"),
 );
-const Opportunity = React.lazy(() =>
-  import("./components/admin/Opportunity.jsx")
+const Opportunity = React.lazy(
+  () => import("./components/admin/Opportunity.jsx"),
 );
-const OpportunityViewAdmin = React.lazy(() =>
-  import("./components/admin/OpportunityViewAdmin.jsx")
+const OpportunityViewAdmin = React.lazy(
+  () => import("./components/admin/OpportunityViewAdmin.jsx"),
 );
-const OpportunityEditAdmin = React.lazy(() =>
-  import("./components/admin/OpportunityEditAdmin.jsx")
+const OpportunityEditAdmin = React.lazy(
+  () => import("./components/admin/OpportunityEditAdmin.jsx"),
 );
 const Kyc = React.lazy(() => import("./components/admin/kyc/Kyc.jsx"));
-const UserDashboard = React.lazy(() =>
-  import("./components/user/UserDashboard.jsx")
+const UserDashboard = React.lazy(
+  () => import("./components/user/UserDashboard.jsx"),
 );
 const LeadPage = React.lazy(() => import("./pages/LeadPage.jsx"));
-const UserProfile = React.lazy(() =>
-  import("./components/user/UserProfile.jsx")
+const UserProfile = React.lazy(
+  () => import("./components/user/UserProfile.jsx"),
 );
-const UserFollowup = React.lazy(() =>
-  import("./components/user/UserFollowup.jsx")
+const UserFollowup = React.lazy(
+  () => import("./components/user/UserFollowup.jsx"),
 );
-const UserSettings = React.lazy(() =>
-  import("./components/user/UserSettings.jsx")
+const UserSettings = React.lazy(
+  () => import("./components/user/UserSettings.jsx"),
 );
-const CategoryView = React.lazy(() =>
-  import("./components/admin/CategoryView.jsx")
+const CategoryView = React.lazy(
+  () => import("./components/admin/CategoryView.jsx"),
 );
-const CategoryEdit = React.lazy(() =>
-  import("./components/admin/CategoryEdit.jsx")
+const CategoryEdit = React.lazy(
+  () => import("./components/admin/CategoryEdit.jsx"),
 );
-const ProductView = React.lazy(() =>
-  import("./components/admin/ProductView.jsx")
+const ProductView = React.lazy(
+  () => import("./components/admin/ProductView.jsx"),
 );
-const ProductEdit = React.lazy(() =>
-  import("./components/admin/ProductEdit.jsx")
+const ProductEdit = React.lazy(
+  () => import("./components/admin/ProductEdit.jsx"),
 );
-const ForgotPassword = React.lazy(() =>
-  import("./components/ForgotPassword.jsx")
+const ForgotPassword = React.lazy(
+  () => import("./components/ForgotPassword.jsx"),
 );
 const UserKycs = React.lazy(() => import("./components/user/UserKycs.jsx"));
 
@@ -246,6 +247,10 @@ const router = createBrowserRouter([
         path: "usersettings",
         element: <UserSettings />,
       },
+      {
+        path: "member",
+        element: <AdminMembers />,
+      },
     ],
   },
 ]);
@@ -267,5 +272,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </LeadProvider>
       </UsersProvider>
     </AuthProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

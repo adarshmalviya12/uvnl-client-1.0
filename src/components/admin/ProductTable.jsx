@@ -56,7 +56,7 @@ const ProductTable = () => {
         <p>Error: {error}</p>
       ) : (
         <>
-          <div className="flex justify-between items-center text-title-sm md:text-title-md mb-3   ">
+          <div className="mb-3 flex items-center justify-between text-title-sm md:text-title-md   ">
             <h1 className="text-black dark:text-white">Products</h1>
             <div className="max-h-132.5">
               <CreateProduct setProducts={setProducts} />
@@ -64,23 +64,23 @@ const ProductTable = () => {
           </div>
           <div className="">
             <div className="max-w-full overflow-x-auto">
-              <table className=" bg-white text-sm md:text-base w-full table-auto">
+              <table className=" w-full table-auto bg-white text-sm md:text-base">
                 <thead>
                   <tr className="bg-bodydark text-center dark:bg-black">
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Name
                     </th>
 
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Category
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       details
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       description
                     </th>
-                    <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                       Actions
                     </th>
                   </tr>
@@ -89,24 +89,24 @@ const ProductTable = () => {
                   {products.length !== 0 ? (
                     products?.map((item) => (
                       <tr
-                        className="dark:bg-graydark text-center"
+                        className="text-center dark:bg-graydark"
                         key={item?._id}
                       >
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {item?.name}
                         </td>
 
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {item?.category.name}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {item?.details}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                           {item?.description}
                         </td>
-                        <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                          <div className="flex gap-2 justify-center">
+                        <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                          <div className="flex justify-center gap-2">
                             <button
                               onClick={() =>
                                 navigate(`/admin/product/${item._id}`)
@@ -129,18 +129,18 @@ const ProductTable = () => {
                       </tr>
                     ))
                   ) : (
-                    <tr className="dark:bg-graydark text-center">
-                      <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <tr className="text-center dark:bg-graydark">
+                      <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                         empty
                       </td>
 
-                      <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                      <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                         empty
                       </td>
-                      <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                      <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                         empty
                       </td>
-                      <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                      <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                         empty
                       </td>
                     </tr>

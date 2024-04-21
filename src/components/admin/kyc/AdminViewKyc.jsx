@@ -28,7 +28,7 @@ const AdminViewKyc = () => {
       }
     };
     fetchKyc();
-  }, [kycId]);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -40,9 +40,10 @@ const AdminViewKyc = () => {
 
   return (
     <>
-      <h1 className="text-title-lg mb-4">User kyc Details</h1>
+      <h1 className="mb-4 text-title-lg">User kyc Details</h1>
+
       {kyc ? (
-        <div className="border-b border-stroke font-normal text-sm md:text-base px-3 md:px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+        <div className="border-b border-stroke bg-white px-3 py-2 text-sm font-normal dark:border-strokedark dark:bg-black md:px-5 md:text-base">
           <div>
             <p className="text-gray-600 mb-2 flex items-center gap-2">
               <MdPerson /> <span className="font-bold">Name:</span>{" "}
@@ -63,7 +64,7 @@ const AdminViewKyc = () => {
               {kyc.panCardNumber}
             </p>
             {/* Here's the modification for the PAN card image as an example */}
-            <p className="text-gray-600 mb-2 md:flex  gap-2  ">
+            <div className="text-gray-600 mb-2 gap-2  md:flex  ">
               <ViewImage imageLink={kyc.signatureUrl} imageName="signature" />
               <ViewImage imageLink={kyc.adharCardUrl} imageName="Adhar Card" />
               <ViewImage
@@ -71,7 +72,7 @@ const AdminViewKyc = () => {
                 imageName="Passport Image"
               />
               <ViewImage imageLink={kyc.panCardUrl} imageName="Pancard" />
-            </p>
+            </div>
           </div>
         </div>
       ) : (

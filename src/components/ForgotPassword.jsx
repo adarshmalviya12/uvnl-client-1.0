@@ -48,11 +48,11 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray ">
+    <div className="flex h-screen items-center justify-center bg-gray ">
       {/* <!-- Sign In Form --> */}
       <div className="flex-col ">
-        <div className="sm:w-100 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="border-b border-stroke py-2 px-3.5 dark:border-strokedark">
+        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:w-100">
+          <div className="border-b border-stroke px-3.5 py-2 dark:border-strokedark">
             <h3 className="font-medium text-primary ">Forgot Password</h3>
           </div>
           {!showOtpInput ? (
@@ -66,14 +66,14 @@ const ForgotPassword = () => {
                     type="email"
                     placeholder="Enter your email address"
                     onChange={handleFormInput}
-                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
                 {!errorMessage ? (
                   <div></div>
                 ) : (
-                  <div className="text-sm text-danger pb-2 pt-2">
+                  <div className="pb-2 pt-2 text-sm text-danger">
                     {errorMessage}
                   </div>
                 )}
@@ -89,11 +89,11 @@ const ForgotPassword = () => {
             </form>
           ) : (
             <div>
-              <p className="font-light px-2 mt-2 ">
+              <p className="mt-2 px-2 font-light ">
                 Enter 6 digit OTP Send to{" "}
                 <span className="font-medium text-primary">{email}</span>
               </p>
-              <p className="font-light px-2 mt-2 text-danger ">
+              <p className="mt-2 px-2 font-light text-danger ">
                 {errorMessage}
               </p>
               <OtpInput onOtpSubmit={onOtpSubmit} />

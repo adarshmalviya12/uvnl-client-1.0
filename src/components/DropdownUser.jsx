@@ -53,7 +53,7 @@ const DropdownUser = () => {
           </span>
         </span>
 
-        <span className="h-12 w-12 rounded-full flex justify-center items-center">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full">
           {/* <img src="" alt="User" /> */} <IoMdPerson fontSize={"25px"} />
         </span>
 
@@ -148,7 +148,7 @@ const DropdownUser = () => {
 
             navigate("/");
           }}
-          className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+          className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
         >
           <svg
             className="fill-current"

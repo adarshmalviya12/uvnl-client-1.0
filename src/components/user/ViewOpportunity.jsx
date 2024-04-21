@@ -16,13 +16,16 @@ import ConvertOpportunity from "./ConvertOpportunity";
 import CallModel from "../CallModel";
 import WhatsappModel from "../WhatsappModel";
 import OpportunityLogs from "./OpportunityLogs";
+import { formatDate } from "../../utils/date";
 
 const ViewOpportunity = () => {
   const { opportunityId } = useParams();
   const [opportunity, setOpportunity] = useState({});
+  // const [kycDetails, setKycDetails] = useState({});
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const date = new Date(opportunity?.dob).toDateString();
+  const date = formatDate(opportunity?.dob);
 
   useEffect(() => {
     const fetchOpportunity = async () => {
@@ -34,9 +37,10 @@ const ViewOpportunity = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setOpportunity(response.data.data.opportunity);
+        // setKycDetails(response.data.data.kyc);
         setLoading(false);
       } catch (error) {
         setError(error.response.data.message);
@@ -56,16 +60,15 @@ const ViewOpportunity = () => {
       ) : (
         <div>
           <div className="flex justify-between">
-            <h2 className="text-title-sm  md:text-title-lg mb-2">
+            <h2 className="mb-2  text-title-sm md:text-title-lg">
               Opportunities Details
             </h2>
-            <div className="text-right mb-2 flex justify-end ">
-              <ConvertOpportunity opportunityId={opportunity._id} />
+            <div className="mb-2 flex justify-end text-right ">
               <CallModel callonNo={opportunity.number} />
               <WhatsappModel whatsappNo={opportunity.number} />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-stroke px-5 py-2 dark:border-strokedark bg-white dark:bg-black">
+          <div className="grid grid-cols-1 gap-4 border-b border-stroke bg-white px-5 py-2 dark:border-strokedark dark:bg-black md:grid-cols-2">
             <div className="flex-1">
               <div className="">
                 <p className="text-gray-600 mb-2 flex items-center gap-2">
@@ -85,16 +88,15 @@ const ViewOpportunity = () => {
                   <MdWork /> Occupation: {opportunity.occupation}
                 </p>
                 <p className="text-gray-600 mb-2 flex items-center gap-2">
-                  <MdWork /> Status: {opportunity?.kycStatus}
+                  {/* <MdWork /> Kyc Status: {kycDetails?.kycStatus} */}
                 </p>
               </div>
               <div className="bg-white dark:bg-black">
                 {opportunity.address ? (
                   <p className="text-gray-600 mb-2 flex items-center gap-2">
                     <MdLocationOn /> {opportunity?.address?.street}{" "}
-                    {opportunity?.address.city}, {opportunity?.address.state}{" "}
-                    {opportunity?.address.pinCode},{" "}
-                    {opportunity.address.country}
+                    {opportunity?.address.city} {opportunity?.address.state}{" "}
+                    {opportunity?.address.pinCode} {opportunity.address.country}
                   </p>
                 ) : null}
               </div>

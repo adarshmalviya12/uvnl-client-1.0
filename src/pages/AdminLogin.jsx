@@ -27,12 +27,12 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray ">
+    <div className="flex h-screen items-center justify-center bg-gray ">
       {/* <!-- Sign In Form --> */}
       <div className="flex-col ">
         <h1 className="text-title-xl">Welcome Admin</h1>
-        <div className="sm:w-100 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:w-100">
+          <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
             <h3 className="font-medium text-black dark:text-white">
               Sign In Form
             </h3>
@@ -47,7 +47,7 @@ const AdminLogin = () => {
                   type="email"
                   placeholder="Enter your email address"
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                 />
               </div>
 
@@ -59,19 +59,19 @@ const AdminLogin = () => {
                   type="password"
                   placeholder="Enter password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                 />
               </div>
               {!errorMessage ? (
                 <div></div>
               ) : (
-                <div className="text-sm text-danger pb-2 pt-2">
+                <div className="pb-2 pt-2 text-sm text-danger">
                   {errorMessage}
                 </div>
               )}
 
               <button
-                className="flex w-full justify-center rounded bg-primary p-3 mt-3 font-medium text-gray"
+                className="mt-3 flex w-full justify-center rounded bg-primary p-3 font-medium text-gray"
                 type="submit"
               >
                 Sign In

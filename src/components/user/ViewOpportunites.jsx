@@ -8,7 +8,7 @@ import BASE_URL from "../../constant";
 import { useOpportunities } from "../../context/OpportunityContext";
 
 const ViewOpportunites = () => {
-  const { opportunities, setOpportunities } = useOpportunities(); // Update context hook
+  const { opportunities, setOpportunities } = useOpportunities();
 
   const [currentPage, setCurrentPage] = useState(1);
   const opportunitiesPerPage = 5;
@@ -48,7 +48,7 @@ const ViewOpportunites = () => {
   const indexOfFirstOpportunity = indexOfLastOpportunity - opportunitiesPerPage;
   const currentOpportunities = opportunities?.slice(
     indexOfFirstOpportunity,
-    indexOfLastOpportunity
+    indexOfLastOpportunity,
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -59,24 +59,24 @@ const ViewOpportunites = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center text-title-sm md:text-title-md mb-3   ">
+      <div className="mb-3 flex items-center justify-between text-title-sm md:text-title-md   ">
         <h1 className="text-black dark:text-white">Opportunity</h1>
       </div>
       <div>
         <div className="max-w-full overflow-x-auto">
-          <table className=" bg-white text-xs md:text-base w-full table-auto">
+          <table className=" w-full table-auto bg-white text-xs md:text-base">
             <thead>
               <tr className="bg-bodydark text-center dark:bg-black">
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Name
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Mobile Number
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Email
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Actions
                 </th>
               </tr>
@@ -84,18 +84,18 @@ const ViewOpportunites = () => {
             <tbody>
               {opportunities.length !== 0 ? (
                 currentOpportunities?.map((item) => (
-                  <tr className="dark:bg-graydark text-center" key={item?._id}>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                  <tr className="text-center dark:bg-graydark" key={item?._id}>
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {item.firstName} {item.lastName}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {item.number}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {item.email}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                      <div className="flex gap-2 justify-center">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                      <div className="flex justify-center gap-2">
                         <button
                           onClick={() =>
                             navigate(`/user/opportunity/${item._id}`)
@@ -118,7 +118,7 @@ const ViewOpportunites = () => {
               ) : (
                 <tr className="dark:bg-meta-4">
                   <td
-                    className="border-b border-[#eee] py-3 px-2 pl-9 dark:border-strokedark xl:pl-11"
+                    className="border-b border-[#eee] px-2 py-3 pl-9 dark:border-strokedark xl:pl-11"
                     colSpan="4"
                   >
                     No opportunities to display
@@ -128,14 +128,14 @@ const ViewOpportunites = () => {
             </tbody>
           </table>
         </div>
-        <ul className="flex justify-center mt-4">
+        <ul className="mt-4 flex justify-center">
           {Array.from(
             { length: Math.ceil(opportunities.length / opportunitiesPerPage) },
             (_, i) => (
               <li key={i} className="mx-1">
                 <button
                   onClick={() => paginate(i + 1)}
-                  className="bg-bodydark hover:bg-bodydark text-white font-bold py-2 px-4 rounded"
+                  className="rounded bg-bodydark px-4 py-2 font-bold text-white hover:bg-bodydark"
                   style={{
                     backgroundColor:
                       currentPage === i + 1 ? "#4f46e5" : "#6b63ff",
@@ -145,7 +145,7 @@ const ViewOpportunites = () => {
                   {i + 1}
                 </button>
               </li>
-            )
+            ),
           )}
         </ul>
       </div>

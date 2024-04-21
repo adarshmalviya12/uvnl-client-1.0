@@ -17,20 +17,20 @@ const UserKycTable = ({ kycData }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center text-title-sm md:text-title-md mb-3">
+      <div className="mb-3 flex items-center justify-between text-title-sm md:text-title-md">
         <h1 className="text-black dark:text-white">KYC Data</h1>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full table-auto bg-white text-xs md:text-base">
           <thead>
-            <tr className="dark:bg-black bg-bodydark text-center">
-              <th className="px-2 py-2 xl:pl-11 font-bold text-black dark:text-white min-w-[100px]">
+            <tr className="bg-bodydark text-center dark:bg-black">
+              <th className="min-w-[100px] px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                 Opportunity Name
               </th>
-              <th className="px-2 py-2 xl:pl-11 font-bold text-black dark:text-white min-w-[100px]">
+              <th className="min-w-[100px] px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                 KYC Status
               </th>
-              <th className="px-2 py-2 xl:pl-11 font-bold text-black dark:text-white min-w-[100px]">
+              <th className="min-w-[100px] px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                 Actions
               </th>
             </tr>
@@ -38,15 +38,15 @@ const UserKycTable = ({ kycData }) => {
           <tbody>
             {currentKyc.length !== 0 ? (
               currentKyc.map((kyc) => (
-                <tr className="dark:bg-graydark text-center" key={kyc._id}>
-                  <td className="px-2 py-2 xl:pl-4 border-b border-[#eee] dark:border-strokedark">
+                <tr className="text-center dark:bg-graydark" key={kyc._id}>
+                  <td className="border-b border-[#eee] px-2 py-2 dark:border-strokedark xl:pl-4">
                     {kyc.opportunity.firstName} {kyc.opportunity.lastName}
                   </td>
-                  <td className="px-2 py-2 xl:pl-4 border-b border-[#eee] dark:border-strokedark">
+                  <td className="border-b border-[#eee] px-2 py-2 dark:border-strokedark xl:pl-4">
                     {kyc.kycStatus}
                   </td>
-                  <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
-                    <div className="flex gap-2 justify-center">
+                  <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
+                    <div className="flex justify-center gap-2">
                       <button
                         onClick={() =>
                           navigate(`/user/kyc/${kyc?.opportunity._id}`)
@@ -61,10 +61,10 @@ const UserKycTable = ({ kycData }) => {
                 </tr>
               ))
             ) : (
-              <tr className="dark:bg-graydark text-center">
+              <tr className="text-center dark:bg-graydark">
                 <td
                   colSpan="3"
-                  className="px-2 py-2 xl:pl-4 border-b border-[#eee] dark:border-strokedark"
+                  className="border-b border-[#eee] px-2 py-2 dark:border-strokedark xl:pl-4"
                 >
                   No KYC data to display
                 </td>
@@ -73,21 +73,21 @@ const UserKycTable = ({ kycData }) => {
           </tbody>
         </table>
       </div>
-      <ul className="flex justify-center mt-4">
+      <ul className="mt-4 flex justify-center">
         {Array.from(
           { length: Math.ceil(kycData.length / kycPerPage) },
           (_, i) => (
             <li key={i} className="mx-1">
               <button
                 onClick={() => paginate(i + 1)}
-                className={`py-2 px-4 font-bold rounded bg-bodydark text-white hover:bg-bodydark ${
+                className={`rounded bg-bodydark px-4 py-2 font-bold text-white hover:bg-bodydark ${
                   currentPage === i + 1 ? "bg-primarydark" : "bg-secondarydark"
                 }`}
               >
                 {i + 1}
               </button>
             </li>
-          )
+          ),
         )}
       </ul>
     </>

@@ -37,7 +37,7 @@ const UserLogin = () => {
               type="email"
               placeholder="Enter your email address"
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-stroke bg-transparent py-1.5 px-3 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              className="w-full rounded-lg border border-stroke bg-transparent px-3 py-1.5 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             />
 
             <span className="absolute right-4 top-4">
@@ -69,7 +69,7 @@ const UserLogin = () => {
               type="password"
               placeholder="Enter password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-stroke bg-transparent py-1.5 px-3 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              className="w-full rounded-lg border border-stroke bg-transparent px-3 py-1.5 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             />
 
             <span className="absolute right-4 top-4">
@@ -105,14 +105,14 @@ const UserLogin = () => {
         {!errorMessage ? (
           <div></div>
         ) : (
-          <div className="text-sm text-danger pb-2 pt-2">{errorMessage}</div>
+          <div className="pb-2 pt-2 text-sm text-danger">{errorMessage}</div>
         )}
 
         <div className="mb-5">
           <input
             type="submit"
             value="Sign In"
-            className="w-full cursor-pointer rounded-lg border border-primary bg-primary py-1.5 px-3 text-white transition hover:bg-opacity-90"
+            className="w-full cursor-pointer rounded-lg border border-primary bg-primary px-3 py-1.5 text-white transition hover:bg-opacity-90"
           />
         </div>
       </form>

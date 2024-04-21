@@ -31,7 +31,7 @@ const OtpInput = ({ onOtpSubmit }) => {
             value={otp}
             onChange={handleFormInput(setOtp)}
             autoComplete="off" // Disable autocomplete
-            className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           />
         </div>
         <div className="mt-3">
@@ -42,13 +42,13 @@ const OtpInput = ({ onOtpSubmit }) => {
             value={password}
             onChange={handleFormInput(setPassword)}
             autoComplete="off" // Disable autocomplete
-            className="w-full rounded border-[1.5px] border-stroke bg-transparent py-1.5 px-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           />
         </div>
         {errorMessage && (
-          <div className="text-sm text-danger pb-2 pt-2">{errorMessage}</div>
+          <div className="pb-2 pt-2 text-sm text-danger">{errorMessage}</div>
         )}
-        <div className="flex justify-end mt-3">
+        <div className="mt-3 flex justify-end">
           <button
             className="bg-primary p-1.5 font-medium text-gray"
             type="submit"

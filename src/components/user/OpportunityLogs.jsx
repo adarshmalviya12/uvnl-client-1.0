@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../constant";
-import formatDate from "../../utils/date";
+import { formatDate } from "../../utils/date";
 import CreateOpportunityFollowUp from "./CreateOpportunityFollowUp";
 
 const OpportunityLogs = ({ opportunity, kycId }) => {
   const [followUps, setFollowUps] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const followUpsPerPage = 5; // Number of follow-ups to display per page
 
   // Logic to paginate follow-ups
@@ -14,7 +16,7 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
   const indexOfFirstFollowUp = indexOfLastFollowUp - followUpsPerPage;
   const currentFollowUps = followUps?.slice(
     indexOfFirstFollowUp,
-    indexOfLastFollowUp
+    indexOfLastFollowUp,
   );
 
   const token = localStorage.getItem("token");
@@ -26,20 +28,30 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
             `${BASE_URL}/user/opportunity-followup/${opportunity._id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
           setFollowUps(response.data.data.followUps);
+          setLoading(false);
         }
       } catch (error) {
         // Handle error
-        console.error("Error fetching follow-ups:", error);
+        setError(error.response.data.message);
+        setLoading(false);
       }
     };
 
-    if (opportunity._id) {
+    if (opportunity && opportunity._id) {
       fetchFollowUps();
     }
-  }, [opportunity]);
+  }, [opportunity, token]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
@@ -50,22 +62,22 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
       />
       <div className="mt-3">
         <div className="max-w-full overflow-x-auto">
-          <table className=" bg-white text-xs md:text-base w-full table-auto">
+          <table className=" w-full table-auto bg-white text-xs md:text-base">
             <thead>
               <tr className="bg-bodydark text-center dark:bg-black">
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Type
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Follow-up Date
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Next Follow-up Date
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Remarks
                 </th>
-                <th className="min-w-[100px]  py-2 px-2 font-bold text-black dark:text-white xl:pl-11">
+                <th className="min-w-[100px]  px-2 py-2 font-bold text-black dark:text-white xl:pl-11">
                   Call Status
                 </th>
               </tr>
@@ -74,22 +86,22 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
               {currentFollowUps?.length !== 0 ? (
                 currentFollowUps?.map((followUp) => (
                   <tr
-                    className="dark:bg-graydark text-center"
+                    className="text-center dark:bg-graydark"
                     key={followUp?._id}
                   >
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp?.type}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {formatDate(followUp?.followUpDate)}{" "}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {formatDate(followUp?.nextFollowUpDate)}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp.remarks}
                     </td>
-                    <td className="border-b border-[#eee] py-2 px-2  dark:border-strokedark xl:pl-4">
+                    <td className="dark:border-strokedark xl:pl-4 border-b border-[#eee] px-2  py-2">
                       {followUp?.callStatus}
                     </td>
                   </tr>
@@ -97,7 +109,7 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
               ) : (
                 <tr className="dark:bg-meta-4">
                   <td
-                    className="border-b border-[#eee] py-2 px-2  dark:border-strokedark  xl:pl-4"
+                    className=" xl:pl-4 border-b border-[#eee] px-2  py-2 dark:border-strokedark"
                     colSpan="6"
                   >
                     No follow-ups to display
@@ -107,14 +119,14 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
             </tbody>
           </table>
         </div>
-        <ul className="flex justify-center mt-4">
+        <ul className="mt-4 flex justify-center">
           {Array.from(
             { length: Math.ceil(followUps?.length / followUpsPerPage) },
             (_, i) => (
               <li key={i} className="mx-1">
                 <button
                   onClick={() => setCurrentPage(i + 1)}
-                  className="bg-bodydark hover:bg-bodydark text-white font-bold py-2 px-4 rounded"
+                  className="rounded bg-bodydark px-4 py-2 font-bold text-white hover:bg-bodydark"
                   style={{
                     backgroundColor:
                       currentPage === i + 1 ? "#4f46e5" : "#6b63ff",
@@ -124,7 +136,7 @@ const OpportunityLogs = ({ opportunity, kycId }) => {
                   {i + 1}
                 </button>
               </li>
-            )
+            ),
           )}
         </ul>
       </div>
