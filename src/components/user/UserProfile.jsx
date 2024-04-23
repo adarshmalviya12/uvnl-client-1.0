@@ -1,8 +1,15 @@
 import { useAuth } from "../../context/AuthContext";
 import { MdMail, MdPerson, MdPhone } from "react-icons/md";
+import Loader from "../../components/Loader";
+import { formatDate } from "../../utils/date";
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, loading, error } = useAuth();
+
+  if (loading) return <Loader />;
+
+  if (error) return <div>something went wrong</div>;
+
   return (
     <>
       <h1 className="mb-4 text-title-lg">User Details </h1>
@@ -21,6 +28,11 @@ const UserProfile = () => {
           <p className="text-gray-600 mb-2 flex items-center gap-2">
             <MdPhone />
             <span className="font-bold">Number: </span> {user.number}
+          </p>
+          <p className="text-gray-600 mb-2 flex items-center gap-2">
+            <MdPhone />
+            <span className="font-bold">Date of Birth: </span>{" "}
+            {formatDate(user.dob)}
           </p>
         </div>
       </div>

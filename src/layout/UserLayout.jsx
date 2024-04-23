@@ -10,7 +10,7 @@ import UserHeader from "../components/user/UserHeader";
 const UserLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const { setUser } = useAuth();
+  const { setUser, setLoading, setError } = useAuth();
   const token = localStorage.getItem("token");
 
   const fetchUser = async () => {
@@ -20,9 +20,11 @@ const UserLayout = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setUser(response.data.data.user);
+      setLoading(false);
     } catch (error) {
-      console.error(error);
+      setError(error.data.data.message);
     }
   };
 

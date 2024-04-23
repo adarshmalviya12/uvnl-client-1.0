@@ -3,6 +3,7 @@ import { useLeads } from "../../context/LeadContext";
 import axios from "axios";
 import BASE_URL from "../../constant";
 import DatePicker from "react-datepicker";
+import { FaRegCalendar } from "react-icons/fa";
 
 const CreateLeadModel = () => {
   const [showModal, setShowModal] = useState(false);
@@ -173,7 +174,7 @@ const CreateLeadModel = () => {
                           name="gender"
                           value={formData.gender}
                           onChange={handleInputChange}
-                          className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         >
                           <option value="" disabled>
                             select
@@ -213,12 +214,16 @@ const CreateLeadModel = () => {
                           className="w-full rounded border-[1.5px] border-stroke bg-transparent py-0.5 px-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         /> */}
                         <DatePicker
-                          selected={formData.dob} // Set selected date
-                          onChange={handleDateChange} // Handle date change
+                          selected={formData.dob}
+                          showIcon
+                          icon={<FaRegCalendar />}
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          onChange={handleDateChange}
                           dateFormat="dd/MM/yyyy"
                           maxDate={new Date("01-01-2021")}
-                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                           isClearable
+                          showYearDropdown
+                          scrollableYearDropdown
                         />
                       </div>
 
@@ -230,7 +235,7 @@ const CreateLeadModel = () => {
                           name="leadSource"
                           value={formData.leadSource}
                           onChange={handleInputChange}
-                          className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                          className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                         >
                           <option value="" disabled>
                             select

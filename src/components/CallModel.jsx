@@ -9,7 +9,7 @@ const CallModel = ({ callonNo }) => {
       >
         <a href={`tel:91${callonNo}`} target="_">
           {" "}
-          <div className="gap-2- flex items-center">
+          <div className="flex items-center gap-2">
             <MdAddCall />
             Call
           </div>

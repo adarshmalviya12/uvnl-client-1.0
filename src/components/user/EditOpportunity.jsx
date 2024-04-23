@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BASE_URL from "../../constant";
 import axios from "axios";
+import DatePicker from "react-datepicker";
 
 const EditOpportunity = () => {
   const { opportunityId } = useParams();
@@ -70,6 +71,10 @@ const EditOpportunity = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleDateChange = (date) => {
+    setFormData({ ...formData, dob: date }); // Update dob with selected date
   };
 
   const handleSubmit = async (e) => {
@@ -181,12 +186,13 @@ const EditOpportunity = () => {
               <label className="mb-2.5 block text-black dark:text-white">
                 Date of Birth <span className="text-meta-1">*</span>
               </label>
-              <input
-                type="date"
-                name="dob"
-                value={formData.dob}
-                onChange={handleInputChange}
-                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-1.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              <DatePicker
+                selected={formData.dob} // Set selected date
+                onChange={handleDateChange} // Handle date change
+                dateFormat="dd/MM/yyyy"
+                maxDate={new Date("01-01-2021")}
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent px-1.5 py-0.5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                isClearable
               />
             </div>
           </div>

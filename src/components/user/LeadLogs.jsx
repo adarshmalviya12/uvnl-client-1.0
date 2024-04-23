@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CreateLeadFollowUp from "./CreateLeadFollowUp";
 import axios from "axios";
 import BASE_URL from "../../constant";
-import formatDate from "../../utils/date";
+import { formatDate } from "../../utils/date";
 
 const LeadLogs = ({ lead }) => {
   const [followUps, setFollowUps] = useState([]);

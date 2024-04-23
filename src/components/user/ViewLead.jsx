@@ -17,6 +17,7 @@ import Convert from "../Convert";
 import CallModel from "../CallModel";
 import WhatsappModel from "../WhatsappModel";
 import LeadLogs from "./LeadLogs";
+import { formatDate } from "../../utils/date";
 
 const ViewLead = () => {
   const { leadId } = useParams();
@@ -24,7 +25,7 @@ const ViewLead = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
-  const date = new Date(lead?.dob).toDateString();
+  const date = formatDate(lead?.dob);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -73,12 +74,12 @@ const ViewLead = () => {
           <p>Error: {error}</p>
         ) : (
           <div className="">
-            <div className="flex justify-between">
+            <div className="justify-between md:flex">
               {" "}
               <h2 className="mb-2  text-title-sm md:text-title-lg">
                 Leads Details :
               </h2>
-              <div className=" mb-2 flex justify-end text-xs ">
+              <div className=" mb-2 justify-end text-xs md:flex ">
                 <Convert products={products} leadId={lead?._id} />
                 <CallModel callonNo={lead.number} />
                 <WhatsappModel whatsappNo={lead.number} />
